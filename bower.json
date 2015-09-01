@@ -21,6 +21,8 @@
     "foundation": "~5.5.2",
     "jquery": "~2.1.4",
     "requirejs-text": "~2.0.14",
-    "handlebars": "~3.0.3"
+    "handlebars": "~3.0.3",
+    "bootstrap": "~3.3.5",
+    "ratchet": "~2.0.2"
   }
 }

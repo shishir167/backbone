@@ -8,14 +8,14 @@ define([
         "Biographics": {
             "UsmleID": "04230439",
             "LastName": "Quinones",
-            "RestOfName": "Luchi Sanchez",
+            "RestOfName": "Lucas",
             "GenSuffix": "",
-            "Gender": "Female",
-            "SSN": "376196336",
-            "BirthDay": "20",
-            "BirthMonth": "12",
-            "BirthYear": "1961",
-            "DateOfBirth": "1961-12-20T00:00:00",
+            "Gender": "Male",
+            "SSN": "738617625",
+            "BirthDay": "23",
+            "BirthMonth": "3",
+            "BirthYear": "1976",
+            "DateOfBirth": "1976-3-23T00:00:00",
             "CredsStatusCode": "C",
             "GraduateStatus": "Y"
         },
@@ -67,11 +67,9 @@ define([
             var template = Templates["Templates/templates/applicantInfo.handlebars"];
             var html = template(information);
             this.$el.html(html);
+            return this;
         }
     });
-
-
-
 
     var render = function(Container) {
         console.log("got you" + Container);

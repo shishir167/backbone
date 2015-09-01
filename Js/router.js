@@ -9,21 +9,38 @@ define([
             // Define some URL routes
             'mobile': 'showMobile',
             'desktop': 'showDesktop',
+            'step1': 'showStep1',
+            'step2': 'showStep2',
+            'step4': 'showStep3',
 
             // Default
             '*actions': 'defaultAction'
         },
 
         showMobile: function() {
-            require(['views/applicantInformationView'], function(Applicant) {
-               Applicant.initialize($('#templateContainer'));
+            $("#content").load("Templates/mobileMain.html", function() {
+                //toggle menu
+                $(document).ready(function() {
+                    $('[data-toggle="offcanvas"]').click(function() {
+                        console.log("Toggle");
+                        $('.row-offcanvas').toggleClass('active')
+                    });
+                });
             });
+
         },
 
         showDesktop: function() {
             console.log('In Desktop');
             $('#templateContainer').empty().append('<h1>Welcome Desktop User</h1>');
         },
+
+        showStep1: function() {
+            require(['views/applicantInformationView'], function(Applicant) {
+                Applicant.initialize($('#mobileContent'));
+            });
+        },
+
 
         defaultAction: function(actions) {
             $('#templateContainer').html('<h1>Error 404</h1>');
