@@ -6,7 +6,11 @@ require.config({
         },
         'templates': {
             deps: ['handlebars'],
-            exports: 'Templetes'
+            exports: 'Templates'
+        },
+        'bootstrap': {
+            deps: ['jquery'],
+            exports: 'Bootstrap'
         },
         'underscore': {
             exports: '_'
@@ -21,7 +25,8 @@ require.config({
         "examTemplate": "../Templates/Exam.html",
         "handlebars.runtime": "../bower_components/handlebars/handlebars.runtime.min", //for manual template precompilataion
         "handlebars": "../bower_components/handlebars/handlebars.runtime.min", //for grunt precompilation plugin
-        "templates": "../Templates/precompiled.handlebars"
+        "templates": "../Templates/precompiled.handlebars",
+        "bootstrap": "../bower_components/bootstrap/dist/js/bootstrap.min"
     }
     
 

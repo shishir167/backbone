@@ -2,30 +2,33 @@ define([
     'jquery',
     'underscore',
     'backbone',
-], function($, _, Backbone) {
+    'templates'
+], function($, _, Backbone, Templates, Bootstrap) {
     var AppRouter = Backbone.Router.extend({
         routes: {
             // Define some URL routes
-            'page/:id': 'showPage',
-            'users': 'showUsers',
+            'mobile': 'showMobile',
+            'desktop': 'showDesktop',
 
             // Default
             '*actions': 'defaultAction'
         },
 
-        showUsers: function() {
-            console.log('In users');
+        showMobile: function() {
+            require(['views/applicantInformationView'], function(Applicant) {
+               Applicant.initialize($('#templateContainer'));
+            });
         },
 
-        showPage: function(id) {
-            console.log('In page ' + id);
+        showDesktop: function() {
+            console.log('In Desktop');
+            $('#templateContainer').empty().append('<h1>Welcome Desktop User</h1>');
         },
 
-        defaultAction: function(actions){
-          console.log(actions);
+        defaultAction: function(actions) {
+            $('#templateContainer').html('<h1>Error 404</h1>');
         }
 
-        //To-do: 404 error
     });
 
     var initialize = function() {
@@ -37,9 +40,9 @@ define([
 
         Backbone.history.start();
 
-        // app_router.navigate('page/22', {
-        //     trigger: true
-        // });
+        app_router.navigate('desktop', {
+            trigger: true
+        });
 
         // app_router.navigate('users', {
         //     trigger: true
