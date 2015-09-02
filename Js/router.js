@@ -11,59 +11,64 @@ define([
             'desktop': 'showDesktop',
             'step1': 'showStep1',
             'step2': 'showStep2',
-            'step4': 'showStep3',
+            'step3': 'showStep3',
+            'complete': 'showComplete',
 
             // Default
             '*actions': 'defaultAction'
-        },
+        }
+    });
 
-        showMobile: function() {
+    var initialize = function() {
+        var app_router = new AppRouter();
+
+        app_router.on("route:showMobile", function() {
+            app_router.navigate('step1', {
+                trigger: true
+            });
             $("#content").load("Templates/mobileMain.html", function() {
                 //toggle menu
                 $(document).ready(function() {
                     $('[data-toggle="offcanvas"]').click(function() {
                         console.log("Toggle");
-                        $('.row-offcanvas').toggleClass('active')
+                        $('.row-offcanvas').toggleClass('active');
                     });
                 });
             });
+        });
 
-        },
-
-        showDesktop: function() {
-            console.log('In Desktop');
-            $('#templateContainer').empty().append('<h1>Welcome Desktop User</h1>');
-        },
-
-        showStep1: function() {
+        app_router.on("route:showStep1", function() {
             require(['views/applicantInformationView'], function(Applicant) {
-                Applicant.initialize($('#mobileContent'));
+                $('#viewTemplate').empty();
+                Applicant.initialize($('#viewTemplate'));
             });
-        },
+        });
 
+        app_router.on("route:showStep2", function() {
+            require(['views/contactInfoView'], function(ContactInfo) {
+                $('#viewTemplate').empty();
+                ContactInfo.initialize($('#viewTemplate'));
+            });
+        });
 
-        defaultAction: function(actions) {
-            $('#templateContainer').html('<h1>Error 404</h1>');
-        }
+        app_router.on("route:defaultAction", function() {
+            $('#content').empty().append('<h1>Error 404</h1>');
+        });
 
-    });
-
-    var initialize = function() {
-        var app_router = new AppRouter;
-
-        // app_router.on("route:showUsers", function(page) {
-        //     console.log('In users');
-        // });
+        app_router.on("route:showDesktop", function() {
+            $("#content").load("Templates/desktopMain.html", function() {
+                require(['views/applicantInformationView', 'views/contactInfoView'], function(Applicant, ContactInfo) {
+                Applicant.initialize($('#userInformation'));
+                ContactInfo.initialize($('#contactInformation'));
+            });
+            });
+        });
 
         Backbone.history.start();
 
-        app_router.navigate('desktop', {
+        app_router.navigate('mobile', {
             trigger: true
         });
-
-        // app_router.navigate('users', {
-        //     trigger: true
-        // });
 
     };
     return {
