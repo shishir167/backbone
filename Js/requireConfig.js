@@ -26,8 +26,8 @@ require.config({
         "handlebars.runtime": "../bower_components/handlebars/handlebars.runtime.min", //for manual template precompilataion
         "handlebars": "../bower_components/handlebars/handlebars.runtime.min", //for grunt precompilation plugin
         "templates": "../Templates/precompiled.handlebars",
-        "bootstrap": "../bower_components/bootstrap/dist/js/bootstrap.min"
+        "bootstrap": "../bower_components/bootstrap/dist/js/bootstrap.min",
+        "mobileDetection": "../Classes/mobileDetection"
     }
     
-
 });

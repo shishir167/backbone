@@ -57,6 +57,10 @@ define([
 
         Backbone.history.start();
 
+        // TODO: Determine browser device type.
+        // TODO: Based on device type, inject the appropriate handlebars template into the body.
+        // TODO: Based on device type, mobile or otherwise, navigate them to the proper view which will be injected into the "#templateContainer" selector.
+        
         app_router.navigate('desktop', {
             trigger: true
         });
