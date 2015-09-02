@@ -1,9 +1,15 @@
+/* global require, define */
 define([
     'jquery',
     'underscore',
     'backbone',
-    'templates'
-], function($, _, Backbone, Templates, Bootstrap) {
+    'templates',
+    'mobileDetection'
+], function($, _, Backbone, Templates, MobileDetection) {
+    'use strict';
+    
+    var _mobileDetection = new MobileDetection();
+
     var AppRouter = Backbone.Router.extend({
         routes: {
             // Define some URL routes
@@ -11,63 +17,76 @@ define([
             'desktop': 'showDesktop',
             'step1': 'showStep1',
             'step2': 'showStep2',
-            'step4': 'showStep3',
+            'step3': 'showStep3',
+            'complete': 'showComplete',
 
             // Default
             '*actions': 'defaultAction'
-        },
+        }
+    });
 
-        showMobile: function() {
+    var initialize = function() {
+        var app_router = new AppRouter();
+
+        app_router.on("route:showMobile", function() {
+            app_router.navigate('step1', {
+                trigger: true
+            });
             $("#content").load("Templates/mobileMain.html", function() {
                 //toggle menu
                 $(document).ready(function() {
                     $('[data-toggle="offcanvas"]').click(function() {
                         console.log("Toggle");
-                        $('.row-offcanvas').toggleClass('active')
+                        $('.row-offcanvas').toggleClass('active');
                     });
                 });
             });
+        });
 
-        },
-
-        showDesktop: function() {
-            console.log('In Desktop');
-            $('#templateContainer').empty().append('<h1>Welcome Desktop User</h1>');
-        },
-
-        showStep1: function() {
+        app_router.on("route:showStep1", function() {
             require(['views/applicantInformationView'], function(Applicant) {
-                Applicant.initialize($('#mobileContent'));
+                $('#viewTemplate').empty();
+                Applicant.initialize($('#viewTemplate'));
             });
-        },
+        });
 
+        app_router.on("route:showStep2", function() {
+            require(['views/contactInfoView'], function(ContactInfo) {
+                $('#viewTemplate').empty();
+                ContactInfo.initialize($('#viewTemplate'));
+            });
+        });
 
-        defaultAction: function(actions) {
-            $('#templateContainer').html('<h1>Error 404</h1>');
-        }
+        app_router.on("route:defaultAction", function() {
+            $('#content').empty().append('<h1>Error 404</h1>');
+        });
 
-    });
-
-    var initialize = function() {
-        var app_router = new AppRouter;
-
-        // app_router.on("route:showUsers", function(page) {
-        //     console.log('In users');
-        // });
+        app_router.on("route:showDesktop", function() {
+            $("#content").load("Templates/desktopMain.html", function() {
+                require(['views/applicantInformationView', 'views/contactInfoView'], function(Applicant, ContactInfo) {
+                Applicant.initialize($('#userInformation'));
+                ContactInfo.initialize($('#contactInformation'));
+            });
+            });
+        });
 
         Backbone.history.start();
 
-        // TODO: Determine browser device type.
-        // TODO: Based on device type, inject the appropriate handlebars template into the body.
-        // TODO: Based on device type, mobile or otherwise, navigate them to the proper view which will be injected into the "#templateContainer" selector.
-        
-        app_router.navigate('desktop', {
-            trigger: true
-        });
+        // Determine browser device type.
+        var isMobileWebBrowser = _mobileDetection.IsMobileWebBrowser();
 
-        // app_router.navigate('users', {
-        //     trigger: true
-        // });
+        if(isMobileWebBrowser === true) {
+            // TODO: Based on device type, inject the appropriate handlebars template into the body.
+            app_router.navigate('mobile', {
+                trigger: true
+            });
+        }
+        else{
+            // TODO: Based on device type, inject the appropriate handlebars template into the body.
+            app_router.navigate('desktop', {
+                trigger: true
+            });
+        }
 
     };
     return {
