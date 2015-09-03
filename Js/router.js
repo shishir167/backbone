@@ -7,18 +7,19 @@ define([
     'mobileDetection'
 ], function($, _, Backbone, Templates, MobileDetection) {
     'use strict';
-    
+
     var _mobileDetection = new MobileDetection();
 
     var AppRouter = Backbone.Router.extend({
         routes: {
             // Define some URL routes
-            'mobile': 'showMobile',
-            'desktop': 'showDesktop',
             'step1': 'showStep1',
             'step2': 'showStep2',
             'step3': 'showStep3',
             'complete': 'showComplete',
+            'exams': 'showExams',
+            'home': 'showHome',
+            'mobilehome': 'showMobileHome',
 
             // Default
             '*actions': 'defaultAction'
@@ -28,45 +29,39 @@ define([
     var initialize = function() {
         var app_router = new AppRouter();
 
-        app_router.on("route:showMobile", function() {
-            app_router.navigate('step1', {
-                trigger: true
-            });
-            $("#content").load("Templates/mobileMain.html", function() {
-                //toggle menu
-                $(document).ready(function() {
-                    $('[data-toggle="offcanvas"]').click(function() {
-                        console.log("Toggle");
-                        $('.row-offcanvas').toggleClass('active');
-                    });
-                });
-            });
+        app_router.on("route:showHome", function() {
+            $('#firstTemplate').empty().append('<h1>Hello Desktop User</h1>');
+            $('#secondTemplate').empty();
+            $('#thirdTemplate').empty();
+        });
+
+        app_router.on("route:showMobileHome", function() {
+            console.log("showMobileHome");
+            $('#firstTemplate').empty().append('<h1>Hello Mobile User</h1>');
         });
 
         app_router.on("route:showStep1", function() {
             require(['views/applicantInformationView'], function(Applicant) {
-                $('#viewTemplate').empty();
-                Applicant.initialize($('#viewTemplate'));
+                $('#firstTemplate').empty();
+                Applicant.initialize($('#firstTemplate'));
             });
         });
 
         app_router.on("route:showStep2", function() {
             require(['views/contactInfoView'], function(ContactInfo) {
-                $('#viewTemplate').empty();
-                ContactInfo.initialize($('#viewTemplate'));
+                $('#firstTemplate').empty();
+                ContactInfo.initialize($('#firstTemplate'));
             });
         });
 
         app_router.on("route:defaultAction", function() {
-            $('#content').empty().append('<h1>Error 404</h1>');
+            $('#firstTemplate').empty().append('<h1>Error 404</h1>');
         });
 
-        app_router.on("route:showDesktop", function() {
-            $("#content").load("Templates/desktopMain.html", function() {
-                require(['views/applicantInformationView', 'views/contactInfoView'], function(Applicant, ContactInfo) {
-                Applicant.initialize($('#userInformation'));
-                ContactInfo.initialize($('#contactInformation'));
-            });
+        app_router.on("route:showExams", function() {
+            require(['views/applicantInformationView', 'views/contactInfoView'], function(Applicant, ContactInfo) {
+                Applicant.initialize($('#firstTemplate'));
+                ContactInfo.initialize($('#secondTemplate'));
             });
         });
 
@@ -75,17 +70,27 @@ define([
         // Determine browser device type.
         var isMobileWebBrowser = _mobileDetection.IsMobileWebBrowser();
 
-        if(isMobileWebBrowser === true) {
-            // TODO: Based on device type, inject the appropriate handlebars template into the body.
-            app_router.navigate('mobile', {
-                trigger: true
+        if (isMobileWebBrowser === true) {
+            $("#content").load("Templates/mobileMain.html", function() {
+                //toggle
+                $('[data-toggle="showLeftPush"]').click(function() {
+                    $('body').toggleClass('cbp-spmenu-push-toleft');
+                    $('#cbp-spmenu-s2').toggleClass('cbp-spmenu-open');
+                });
+
+                app_router.navigate('mobilehome', {
+                    trigger: true
+                });
             });
-        }
-        else{
-            // TODO: Based on device type, inject the appropriate handlebars template into the body.
-            app_router.navigate('desktop', {
-                trigger: true
+        } else {
+            $("#content").load("Templates/desktopMain.html", function() {
+                $('body').toggleClass('cbp-spmenu-push-toright');
+                app_router.navigate('home', {
+                    trigger: true
+                });
             });
+
+
         }
 
     };
