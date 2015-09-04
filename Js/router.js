@@ -42,9 +42,9 @@ define([
         });
 
         app_router.on("route:showStep1", function() {
-            require(['views/applicantInformationView'], function(Applicant) {
+            require(['views/step2View'], function(Step2View) {
                 $('#firstTemplate').empty();
-                Applicant.initialize($('#firstTemplate'));
+                Step2View.initialize($('#firstTemplate'));
             });
         });
 
@@ -55,14 +55,23 @@ define([
             });
         });
 
+        app_router.on("route:showStep3", function() {
+            require(['views/step3View'], function(Step3View) {
+                $('#firstTemplate').empty();
+                Step3View.initialize($('#firstTemplate'));
+            });
+        });
+
         app_router.on("route:defaultAction", function() {
             $('#firstTemplate').empty().append('<h1>Error 404</h1>');
         });
 
         app_router.on("route:showExams", function() {
-            require(['views/applicantInformationView', 'views/contactInfoView'], function(Applicant, ContactInfo) {
-                Applicant.initialize($('#firstTemplate'));
+            require(['views/step2View', 'views/contactInfoView', 'views/step3View'], function(Step2View, ContactInfo, Step3View) {
                 ContactInfo.initialize($('#secondTemplate'));
+                Step2View.initialize($('#firstTemplate'));
+                Step3View.initialize($('#thirdTemplate'));
+
             });
         });
 

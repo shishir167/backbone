@@ -6,23 +6,23 @@
         <table id="tbl" class="applicantInfo">
             <tr>
                 <th>Date Received:</th>
-                <td>2 Feb 2007</td>
+                <td>{{ReceiveDate}}</td>
             </tr>
             <tr>
                 <th>Processing Status:</th>
-                <td>Accepted</td>
+                <td>{{ApplicationStatus}}</td>
             </tr>
             <tr>
                 <th>Date Accepted:</th>
-                <td>5 Feb 2007</td>
+                <td>{{AcceptedDate}}</td>
             </tr>
             <tr>
                 <th>Eligibility Period:</th>
-                <td>11 Feb 2007 - 11 Feb 2008</td>
+                <td>{{EligibilityStart}} - {{EligibilityEnd}}</td>
             </tr>
             <tr>
                 <th>Scheduling Permit Issued:</th>
-                <td>5 Feb 2007</td>
+                <td>{{PermitIssuedDate}}</td>
             </tr>
         </table>
         <p>
@@ -34,11 +34,11 @@
         <table id="tblExam" class="applicantInfo">
             <tr>
                 <th>Date Exam Taken: </th>
-                <td>6 Mar 2007</td>
+                <td>{{ExamHistory.[0]}}</td>
             </tr>
             <tr>
                 <th>Date Exam Taken: </th>
-                <td>12 Dec 2006</td>
+                <td>{{ExamHistory.[1]}}</td>
             </tr>
         </table>
     </div>
@@ -48,12 +48,12 @@
             <tbody>
                 <tr>
                     <th>Exam Date:</th>
-                    <td>6 Mar 2007</td>
+                    <td>{{ScoreExamDate}}</td>
                 </tr>
                 <tr></tr>
                 <tr>
                     <th>Score Report Issued:</th>
-                    <td>25 Apr 2007</td>
+                    <td>{{ScoreReportDate}}</td>
                 </tr>
             </tbody>
         </table>

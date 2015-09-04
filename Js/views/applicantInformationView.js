@@ -63,17 +63,13 @@ define([
 
     var TemplateView = Backbone.View.extend({
         render: function() {
-            var source = $('templateContainer').html;
-            var template = Templates["Templates/templates/applicantInfo.handlebars"];
-            var html = template(information);
-            this.$el.html(html);
+            this.$el.html(Templates["Templates/templates/applicantInfo.handlebars"](this.model));
             return this;
         }
     });
 
     var render = function(Container) {
-        console.log("got you" + Container);
-        var templateview = new TemplateView();
+        var templateview = new TemplateView({model: information});
         templateview.$el = Container;
         templateview.render();
 
