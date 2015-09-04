@@ -30,6 +30,7 @@ define([
         var app_router = new AppRouter();
 
         app_router.on("route:showHome", function() {
+            console.log("got home");
             $('#firstTemplate').empty().append('<h1>Hello Desktop User</h1>');
             $('#secondTemplate').empty();
             $('#thirdTemplate').empty();
@@ -78,18 +79,14 @@ define([
                     $('#cbp-spmenu-s2').toggleClass('cbp-spmenu-open');
                 });
 
-                app_router.navigate('mobilehome', {
-                    trigger: true
-                });
+                $('#firstTemplate').empty().append('<h1>Hello Mobile User</h1>');
+
             });
         } else {
             $("#content").load("Templates/desktopMain.html", function() {
                 $('body').toggleClass('cbp-spmenu-push-toright');
-                app_router.navigate('home', {
-                    trigger: true
-                });
+                $('#firstTemplate').empty().append('<h1>Hello Desktop User</h1>');
             });
-
 
         }
 
