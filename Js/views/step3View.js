@@ -1,8 +1,9 @@
 define([
     'jquery',
     'backbone',
-    'templates'
-], function($, Backbone, Templates) {
+    'templates',
+    'ecfmgHandlebarsHelpers'
+], function($, Backbone, Templates, EcfmgHandlebarsHelpers) {
 
     var information = {
         "ReceiveDate": "2007-02-02T00:00:00",

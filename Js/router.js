@@ -83,6 +83,8 @@ define([
         if (isMobileWebBrowser === true) {
             $("#content").load("Templates/mobileMain.html", function() {
                 //toggle
+                $('body').toggleClass('cbp-spmenu-push-toleft');
+                $('#cbp-spmenu-s2').toggleClass('cbp-spmenu-open');
                 $('[data-toggle="showLeftPush"]').click(function() {
                     $('body').toggleClass('cbp-spmenu-push-toleft');
                     $('#cbp-spmenu-s2').toggleClass('cbp-spmenu-open');
@@ -93,7 +95,7 @@ define([
             });
         } else {
             $("#content").load("Templates/desktopMain.html", function() {
-                $('body').toggleClass('cbp-spmenu-push-toright');
+                $('body').attr('style', 'margin-left: 250px !important'); //Moving body for the sidebar
                 $('#firstTemplate').empty().append('<h1>Hello Desktop User</h1>');
             });
 

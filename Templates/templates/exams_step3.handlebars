@@ -3,10 +3,10 @@
     <div id="emptymessage_step2cs"></div>
     <h3>Most Recent Application</h3>
     <div id="examMostRecentApplicationCS">
-        <table id="tbl" class="applicantInfo">
+        <table id="tbl" class="applicantInfo table">
             <tr>
                 <th>Date Received:</th>
-                <td>{{ReceiveDate}}</td>
+                <td>{{#formateDateFromData ReceiveDate}}{{/formateDateFromData}}</td>
             </tr>
             <tr>
                 <th>Processing Status:</th>
@@ -14,15 +14,15 @@
             </tr>
             <tr>
                 <th>Date Accepted:</th>
-                <td>{{AcceptedDate}}</td>
+                <td>{{#formateDateFromData AcceptedDate}}{{/formateDateFromData}}</td>
             </tr>
             <tr>
                 <th>Eligibility Period:</th>
-                <td>{{EligibilityStart}} - {{EligibilityEnd}}</td>
+                <td>{{#formateDateFromData EligibilityStart}}{{/formateDateFromData}} - {{#formateDateFromData EligibilityEnd}}{{/formateDateFromData}}</td>
             </tr>
             <tr>
                 <th>Scheduling Permit Issued:</th>
-                <td>{{PermitIssuedDate}}</td>
+                <td>{{#formateDateFromData PermitIssuedDate}}{{/formateDateFromData}}</td>
             </tr>
         </table>
         <p>
@@ -31,29 +31,29 @@
     </div>
     <h3>Step 2 CS Exam History</h3>
     <div id="examHistoryStep2CS">
-        <table id="tblExam" class="applicantInfo">
+        <table id="tblExam" class="applicantInfo table">
             <tr>
                 <th>Date Exam Taken: </th>
-                <td>{{ExamHistory.[0]}}</td>
+                <td>{{#formateDateFromData ExamHistory.[0]}}{{/formateDateFromData}}</td>
             </tr>
             <tr>
                 <th>Date Exam Taken: </th>
-                <td>{{ExamHistory.[1]}}</td>
+                <td>{{#formateDateFromData ExamHistory.[1]}}{{/formateDateFromData}}</td>
             </tr>
         </table>
     </div>
     <h3>Most Recent Score Report</h3>
     <div id="examScoreReportStep2CS">
-        <table>
+        <table class="table">
             <tbody>
                 <tr>
                     <th>Exam Date:</th>
-                    <td>{{ScoreExamDate}}</td>
+                    <td>{{#formateDateFromData ScoreExamDate}}{{/formateDateFromData}}</td>
                 </tr>
                 <tr></tr>
                 <tr>
                     <th>Score Report Issued:</th>
-                    <td>{{ScoreReportDate}}</td>
+                    <td>{{#formateDateFromData ScoreReportDate}}{{/formateDateFromData}}</td>
                 </tr>
             </tbody>
         </table>

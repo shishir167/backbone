@@ -4,10 +4,10 @@
 
 <h3>Most Recent Application</h3>
 <div>
-    <table id="tbl" class="applicantInfo">
+    <table id="tbl" class="applicantInfo table">
         <tr>
             <th>Date Received:</th>
-            <td>{{ReceiveDate}}</td>
+            <td>{{#formateDateFromData ReceiveDate}}{{/formateDateFromData}}</td>
         </tr>
         <tr>
             <th>Processing Status:</th>
@@ -15,11 +15,11 @@
         </tr>
         <tr>
             <th>Date Accepted:</th>
-            <td>{{AcceptedDate}}</td>
+            <td>{{#formateDateFromData AcceptedDate}}{{/formateDateFromData}}</td>
         </tr>
         <tr>
             <th>Eligibility Period:</th>
-            <td>{{EligibilityStart}} - {{EligibilityEnd}}</td>
+            <td>{{#formateDateFromData EligibilityStart}} - {{EligibilityEnd}}{{/formateDateFromData}}</td>
         </tr>
         <tr>
             <th>Testing Region:</th>
@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <th>Scheduling Permit Issued:</th>
-            <td>{{PermitIssuedDate}}</td>
+            <td>{{#formateDateFromData PermitIssuedDate}}{{/formateDateFromData}}</td>
         </tr>
     </table>
 
@@ -38,26 +38,26 @@
 
 <h3>Step 2 CK Exam History</h3>
 <div id="examHistoryStep2CK">
-    <table id="tblExam" class="applicantInfo">
+    <table id="tblExam" class="applicantInfo table">
         <tr>
             <th>Date Exam Taken: </th>
-            <td>{{ExamHistory}}</td>
+            <td>{{#formateDateFromData ExamHistory.[0]}}{{/formateDateFromData}}</td>
         </tr>
     </table>
 </div>
 
 <h3>Most Recent Score Report</h3>
 <div id="examScoreReportStep2CK">
-    <table class="applicantInfo">
+    <table class="applicantInfo table">
         <tbody>
             <tr>
                 <th>Exam Date:</th>
-                <td>{{ScoreExamDate}}</td>
+                <td>{{#formateDateFromData ScoreExamDate}}{{/formateDateFromData}}</td>
             </tr>
             <tr></tr>
             <tr>
                 <th>Score Report Issued:</th>
-                <td>{{ScoreReportDate}}</td>
+                <td>{{#formateDateFromData ScoreReportDate}}{{/formateDateFromData}}</td>
             </tr>
         </tbody>
     </table>
