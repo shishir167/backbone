@@ -95,7 +95,7 @@ define([
             });
         } else {
             $("#content").load("Templates/desktopMain.html", function() {
-                $('body').attr('style', 'margin-left: 250px !important'); //Moving body for the sidebar
+                $('#content').attr('style', 'padding-left: 250px !important'); //Moving body for the sidebar
                 $('#firstTemplate').empty().append('<h1>Hello Desktop User</h1>');
             });
 
