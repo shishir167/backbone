@@ -42,14 +42,14 @@ define([
         });
 
         app_router.on("route:showStep1", function() {
-            require(['views/step2View'], function(Step2View) {
+            require(['views/step1View'], function(Step2View) {
                 $('#firstTemplate').empty();
                 Step2View.initialize($('#firstTemplate'));
             });
         });
 
         app_router.on("route:showStep2", function() {
-            require(['views/contactInfoView'], function(ContactInfo) {
+            require(['views/step2View'], function(ContactInfo) {
                 $('#firstTemplate').empty();
                 ContactInfo.initialize($('#firstTemplate'));
             });
