@@ -1,0 +1,11 @@
+<widget id="org.ecfmg.myecfmg" version="0.0.1">
+    <name>>MyECFMG</name>
+    <description>
+        ECFMG Mobile App Demo
+    </description>
+    <author  email="developer@ecfmg.org" href="http://ecfmg.org">
+        ECFMG Mobile Dev Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
