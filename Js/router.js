@@ -79,6 +79,7 @@ define([
 
         // Determine browser device type.
         var isMobileWebBrowser = _mobileDetection.IsMobileWebBrowser();
+        console.log(_mobileDetection.IsNativeApp());
 
         if (isMobileWebBrowser === true) {
             $("#content").load("Templates/mobileMain.html", function() {
