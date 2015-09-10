@@ -1,6 +1,10 @@
-body{
+body {}
+
+#content {
+    width: 100%;
 }
 
-#content{
-	width: 100%;
+#sidebarLeft {
+    float: left !important;
+    padding-left: 15px !important;
 }

@@ -67,8 +67,8 @@ define([
         });
 
         app_router.on("route:showExams", function() {
-            require(['views/step2View', 'views/contactInfoView', 'views/step3View'], function(Step2View, ContactInfo, Step3View) {
-                ContactInfo.initialize($('#secondTemplate'));
+            require(['views/step1View', 'views/step2View', 'views/step3View'], function(Step1View, Step2View, Step3View) {
+                Step1View.initialize($('#secondTemplate'));
                 Step2View.initialize($('#firstTemplate'));
                 Step3View.initialize($('#thirdTemplate'));
 
@@ -83,20 +83,24 @@ define([
 
         if (isMobileWebBrowser === true) {
             $("#content").load("Templates/mobileMain.html", function() {
-                //toggle
-                $('body').toggleClass('cbp-spmenu-push-toleft');
-                $('#cbp-spmenu-s2').toggleClass('cbp-spmenu-open');
+                //code to toggle navbar in mobile
                 $('[data-toggle="showLeftPush"]').click(function() {
                     $('body').toggleClass('cbp-spmenu-push-toleft');
                     $('#cbp-spmenu-s2').toggleClass('cbp-spmenu-open');
                 });
+
+                $('[data-toggle="showRightPush"]').click(function() {
+                    $('body').toggleClass('cbp-spmenu-push-toright');
+                    $('#cbp-spmenu-s1').toggleClass('cbp-spmenu-open');
+                });
+
 
                 $('#firstTemplate').empty().append('<h1>Hello Mobile User</h1>');
 
             });
         } else {
             $("#content").load("Templates/desktopMain.html", function() {
-                $('#content').attr('style', 'padding-left: 250px !important'); //Moving body for the sidebar
+                $('#content').attr('style', 'padding-left: 250px !important'); //Moving body for the static sidebar in desktop
                 $('#firstTemplate').empty().append('<h1>Hello Desktop User</h1>');
             });
 
