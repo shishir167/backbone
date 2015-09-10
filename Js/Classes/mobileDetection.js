@@ -15,8 +15,7 @@ define([], function() {
 	}
 
 	function isNativeApp() {
-		// TODO: Implement this portion.
-		return false;
+		return (typeof window.device !== 'undefined');
 	}
 	
 
