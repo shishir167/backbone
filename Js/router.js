@@ -46,9 +46,7 @@ define([
                     $('body').toggleClass('cbp-spmenu-push-toright');
                     $('#cbp-spmenu-s1').toggleClass('cbp-spmenu-open');
                 });
-
-
-                //$('#firstTemplate').empty().append('<h1>Hello Mobile User</h1>');
+                $('#firstTemplate').empty().append('<h1>Hello Mobile User</h1>');
 
             });
         } else {

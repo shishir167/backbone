@@ -24,22 +24,22 @@ define([
     };
 
     var TemplateView = Backbone.View.extend({
-        render: function() {
+        render: function(data) {
             var template = Templates["Templates/templates/exams_step1.handlebars"];
-            var html = template(information);
+            var html = template(data);
             this.$el.html(html);
             return this;
         }
     });
 
-    var render = function(Container) {
+    var initializeAndRender = function(Container) {
         var templateview = new TemplateView();
         templateview.$el = Container;
-        templateview.render();
+        templateview.render(information);
 
     };
     return {
-        initialize: render
+        initialize: initializeAndRender
     };
 
 });
