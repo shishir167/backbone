@@ -19,6 +19,7 @@ define([
             'complete': 'showComplete',
             'exams': 'showExams',
             'home': 'showHome',
+            'thorax': 'showThorax',
             'mobilehome': 'showMobileHome',
 
             // Default
@@ -96,6 +97,13 @@ define([
             require(['views/step3View'], function(Step3View) {
                 $('#firstTemplate').empty();
                 Step3View.initialize($('#firstTemplate'));
+            });
+        });
+
+        app_router.on("route:showThorax", function() {
+            console.log('Thorax');
+            require(['views/ThoraxExampleView'], function(ThoraxExampleView) {
+
             });
         });
 
